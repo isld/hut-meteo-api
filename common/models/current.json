@@ -1,0 +1,13 @@
+{
+  "name": "current",
+  "plural": "current",
+  "properties": {
+    "content": {
+      "type": "object"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
