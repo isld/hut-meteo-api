@@ -1,6 +1,7 @@
 'use strict';
 
-var https = require('https')
+var https = require('https');
+var parseBasic = require('../../parsers/clientraw');
 
 module.exports = function(Current) {
   Current.status = function(cb) {
@@ -33,19 +34,7 @@ module.exports = function(Current) {
 
       res.on('data', function(chunk) { rawData += chunk; });
       res.on('end', function() {
-        var crData = rawData.split(' ');
-
-        var output = {
-          windAvgSpeed: crData[1],
-          windGusts: crData[2],
-          windDirection: crData[3],
-          outsideTemp: crData[4],
-          outsideHumidity: crData[5],
-          barometer: crData[6],
-          rainDaily: crData[7],
-          rainMonthly: crData[8],
-          rainYearly: crData[9]
-        };
+        var output = parseBasic(rawData);
 
         cb(null, output);
       });
